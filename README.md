@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 ## Uitvoeren
 
-```
+```bash
 $ pythonl ./hoofd.pynl
 # Fibonacci(7) uit Engelse module: 13
 # Fibonacci(7) uit Nederlandse module: 13
