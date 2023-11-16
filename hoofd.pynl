@@ -1,8 +1,8 @@
-import fiben
-import fibnl
+importeer fiben
+importeer fibnl
 
 print("Fibonacci(7) uit Engelse module:", fiben.fibonacci(7))
 print("Fibonacci(7) uit Nederlandse module:", fibnl.fibonacci(7))
 
-check fiben.fibonacci(7) == fibnl.fibonacci(7)
+eis fiben.fibonacci(7) == fibnl.fibonacci(7)
 

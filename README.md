@@ -1,31 +1,32 @@
 # pythonl
-Wat als je alleen maar nederlandse woorden zou gebruiken voor python sleutel woorden?
+
+Wat als je alleen maar Nederlandse woorden zou gebruiken voor python sleutel woorden?
 
 Hier is mijn idee daar van:
 
 - and : en
 - as : zoals
-- assert : check
+- assert : eis
 - break : stop
-- class : class
+- class : klasse
 - continue: opnieuw
 - def: def
-- del: del
-- elif: andals
+- del: verwijder
+- elif: andien 
 - else: anders
 - except: behalve
-- False: Vals
+- False: Onwaar 
 - finally: uiteindelijk
 - for: voor
 - from: van
 - global: globaal
-- if: als
-- import: import
+- if: indien
+- import: importeer
 - in: in
 - is: is
-- lambda: lambda
-- None: Niks
-- nonlocal: nietlocaal
+- lambda: labda
+- None: Niets
+- nonlocal: nietlokaal
 - not: niet
 - or: of
 - pass: pas
@@ -39,12 +40,13 @@ Hier is mijn idee daar van:
 
 ```python
 def(a):
-  als a:
+  indien a:
     print(a)
   anders:
     print("Niet a")
 ```
 
+En je kan dit nog echt uitvoeren ook!
 
 ## Uitvoeren
 
