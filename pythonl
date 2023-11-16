@@ -15,7 +15,6 @@ import importlib
 import code
 from importlib.abc import MetaPathFinder, Loader
 from importlib.util import spec_from_file_location
-from importlib.machinery import FileFinder
 
 py_to_nl = {
     "and" : "en",
