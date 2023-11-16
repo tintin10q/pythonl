@@ -48,7 +48,7 @@ def(a):
 
 En je kan dit nog echt uitvoeren ook!
 
-# Afhankelijkheden
+## Afhankelijkheden
 
 Vergeet niet om de afhankelijkheden in `requirements.txt` te installeren. 
 Dat is op dit moment alleen maar [token_utils](https://pypi.org/project/token-utils/).
