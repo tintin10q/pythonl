@@ -53,3 +53,9 @@ $ pythonl ./hoofd.pynl
 # Fibonacci(7) uit Engelse module: 13
 # Fibonacci(7) uit Nederlandse module: 13
 ```
+
+```
+$ ./pythonl ./pythonl.pynl ./hoofd.pynl
+Fibonacci(7) uit Engelse module: 13
+Fibonacci(7) uit Nederlandse module: 13
+```
