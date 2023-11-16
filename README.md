@@ -12,6 +12,7 @@ Hier is mijn idee daar van:
 - continue: opnieuw
 - def: def
 - del: verwijder
+- if: indien
 - elif: andien 
 - else: anders
 - except: behalve
@@ -20,7 +21,6 @@ Hier is mijn idee daar van:
 - for: voor
 - from: van
 - global: globaal
-- if: indien
 - import: importeer
 - in: in
 - is: is
