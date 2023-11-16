@@ -1,0 +1,145 @@
+#!/bin/env python3
+
+"""
+Dit bestand is mede gebaseerd op de volgende twee voorbeelden:
+
+ - https://github.com/aroberge/ideas/blob/master/ideas/examples/french.py
+ - https://stackoverflow.com/a/43573798
+"""
+
+
+importeer sys
+importeer os zoals bs
+importeer importlib zoals importeerbib
+importeer code
+van token_utils importeer tokenize zoals tekeniseer, untokenize zoals ontekeniseer
+van importlib.abc importeer MetaPathFinder zoals MetaPadVinder, Loader zoals Laader
+van importlib.util importeer spec_from_file_location zoals spec_van_bestandslocatie
+van importlib.machinery importeer FileFinder zoals BestandsVinder
+
+py_naar_nl = {
+    "and" : "en",
+    "as" : "zoals",
+    "assert" : "beweer",
+    "async" : "async",
+    "break" : "stop",
+    "case" : "geval",
+    "class" : "klasse",
+    "continue": "opnieuw",
+    "def": "def",
+    "del": "del",
+    "elif": "andals",
+    "else": "anders",
+    "except": "behalve",
+    "False": "Vals",
+    "finally": "uiteindelijk",
+    "for": "voor",
+    "from": "van",
+    "global": "globaal",
+    "if": "als",
+    "import": "importeer",
+    "in": "in",
+    "is": "is",
+    "lambda": "lambda",
+    "match": "vergelijk",
+    "None": "Niks",
+    "nonlocal": "nietlocaal",
+    "not": "niet",
+    "or": "of",
+    "pass": "pas",
+    "raise": "hef",
+    "return": "terug",
+    "True": "Waar",
+    "try": "probeer",
+    "type": "type",
+    "while": "zolang",
+    "with": "met",
+    "yield": "lever",
+}
+
+py_naar_nl = {nl_kwd: py_kwd voor py_kwd, nl_kwd in py_naar_nl.items()}
+
+
+def vertaal_teken(teken, vertalingen):
+    probeer:
+        teken.string = vertalingen[teken.string]
+    behalve KeyError:
+        pas
+
+    terug teken
+
+
+def vertaal_bron(bron, vertalingen = py_naar_nl):
+    brontekens = tekeniseer(bron)
+    vertaalde_tekens = [vertaal_teken(token, vertalingen) voor token in brontekens]
+    terug ontekeniseer(vertaalde_tekens)
+    
+
+klasse PynlMetaPadVinder(MetaPadVinder):
+    def find_spec(self, volledige_naam, pad, doel=None):
+        als pad is Niks of pad == "":
+            pad = [bs.getcwd()] # import op het hoogste niveau --
+        als "." in volledige_naam:
+            *ouders, naam = volledige_naam.split(".")
+        anders:
+            naam = volledige_naam
+        voor deel in pad:
+            als bs.path.isdir(bs.path.join(deel, naam)):
+                # deze module heeft onderliggende modules
+                bestandsnaam = bs.path.join(deel, naam, "__init__.pynl")
+                submodule_locaties = [bs.path.join(deel, naam)]
+            anders:
+                bestandsnaam = bs.path.join(deel, naam + ".pynl")
+                submodule_locaties = Niks
+            als niet bs.path.exists(bestandsnaam):
+                opnieuw
+
+            terug spec_van_bestandslocatie(volledige_naam, bestandsnaam, loader=PynlLaader(bestandsnaam),
+                submodule_search_locations=submodule_locaties)
+
+        terug Niks # we weten niet hoe we dit moeten importeren
+
+klasse PynlLaader(Laader):
+    def __init__(self, bestandsnaam):
+        self.bestandsnaam = bestandsnaam
+
+    def create_module(self, spec):
+        terug Niks # gebruik standaard modulecreatiesemantiek
+
+    def exec_module(self, module):
+        met open(self.bestandsnaam) zoals f:
+            bron = f.read()
+
+        vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)
+
+        exec(vertaald, vars(module))
+
+
+def hoofd_uitvoeren(locatie, argumenten):
+    met open(locatie) zoals f:
+        bron = f.read()
+
+    vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)
+    exec(vertaald, {'argv_external': argumenten})
+
+
+als __name__ == '__main__':
+    sys.meta_path.insert(0, PynlMetaPadVinder())
+
+    # wis eventuele caches
+    sys.path_importer_cache.clear()
+    importeerbib.invalidate_caches()
+
+    probeer:
+        # injecteer externe argumenten in het script
+        voor idx, x in enumerate(argv_external):
+            sys.argv[idx] = x
+    behalve NameError:
+        pas
+    
+    probeer:
+        locatie = sys.argv[1]
+        hoofd_uitvoeren(locatie, sys.argv[2:])
+    behalve IndexError:
+        code.InteractiveConsole(locals=globals()).interact()
+    
