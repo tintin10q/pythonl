@@ -4,11 +4,14 @@ Wat als je alleen maar Nederlandse woorden zou gebruiken voor python sleutel woo
 
 Hier is mijn idee daar van:
 
-- and : en
-- as : zoals
-- assert : eis
-- break : stop
-- class : klasse
+- and: en
+- as: zoals
+- assert: eis
+- async: async
+- await: wachtop
+- break: stop
+- case: geval
+- class: klasse
 - continue: opnieuw
 - def: def
 - del: verwijder
@@ -24,16 +27,18 @@ Hier is mijn idee daar van:
 - import: importeer
 - in: in
 - is: is
-- lambda: labda
+- lambda: lambda
+- match: vergelijk
 - None: Niets
 - nonlocal: nietlokaal
 - not: niet
 - or: of
 - pass: pas
-- raise: verhoog
+- raise: hef
 - return: terug
 - True: Waar
 - try: probeer
+- type: type
 - while: zolang
 - with: met
 - yield: lever
