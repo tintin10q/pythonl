@@ -15,28 +15,27 @@ import importlib
 import code
 from importlib.abc import MetaPathFinder, Loader
 from importlib.util import spec_from_file_location
-from importlib.machinery import FileFinder
 
 py_to_nl = {
     "and" : "en",
     "as" : "zoals",
-    "assert" : "beweer",
+    "assert" : "eis",
     "async" : "async",
     "break" : "stop",
     "case" : "geval",
     "class" : "klasse",
     "continue": "opnieuw",
     "def": "def",
-    "del": "del",
-    "elif": "andals",
+    "del": "verwijder",
+    "if": "indien",
+    "elif": "andien",
     "else": "anders",
     "except": "behalve",
-    "False": "Vals",
+    "False": "Onwaar",
     "finally": "uiteindelijk",
     "for": "voor",
     "from": "van",
     "global": "globaal",
-    "if": "als",
     "import": "importeer",
     "in": "in",
     "is": "is",

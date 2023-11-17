@@ -1,5 +1,5 @@
 def fibonacci(n):
-    als n in {0, 1}:
+    indien n in {0, 1}:
         terug n
 
     terug fibonacci(n - 1) + fibonacci(n - 2)
