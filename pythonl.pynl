@@ -20,30 +20,31 @@ van importlib.machinery importeer FileFinder zoals BestandsVinder
 py_naar_nl = {
     "and" : "en",
     "as" : "zoals",
-    "assert" : "beweer",
+    "assert" : "eis",
     "async" : "async",
+    "await" : "wachtop",
     "break" : "stop",
     "case" : "geval",
     "class" : "klasse",
     "continue": "opnieuw",
     "def": "def",
-    "del": "del",
-    "elif": "andals",
+    "del": "verwijder",
+    "if": "indien",
+    "elif": "andien",
     "else": "anders",
     "except": "behalve",
-    "False": "Vals",
+    "False": "Onwaar",
     "finally": "uiteindelijk",
     "for": "voor",
     "from": "van",
     "global": "globaal",
-    "if": "als",
     "import": "importeer",
     "in": "in",
     "is": "is",
     "lambda": "lambda",
     "match": "vergelijk",
-    "None": "Niks",
-    "nonlocal": "nietlocaal",
+    "None": "Niets",
+    "nonlocal": "nietlokaal",
     "not": "niet",
     "or": "of",
     "pass": "pas",
@@ -77,34 +78,34 @@ def vertaal_bron(bron, vertalingen = py_naar_nl):
 
 klasse PynlMetaPadVinder(MetaPadVinder):
     def find_spec(self, volledige_naam, pad, doel=None):
-        als pad is Niks of pad == "":
+        indien pad is Niets of pad == "":
             pad = [bs.getcwd()] # import op het hoogste niveau --
-        als "." in volledige_naam:
+        indien "." in volledige_naam:
             *ouders, naam = volledige_naam.split(".")
         anders:
             naam = volledige_naam
         voor deel in pad:
-            als bs.path.isdir(bs.path.join(deel, naam)):
+            indien bs.path.isdir(bs.path.join(deel, naam)):
                 # deze module heeft onderliggende modules
                 bestandsnaam = bs.path.join(deel, naam, "__init__.pynl")
                 submodule_locaties = [bs.path.join(deel, naam)]
             anders:
                 bestandsnaam = bs.path.join(deel, naam + ".pynl")
-                submodule_locaties = Niks
-            als niet bs.path.exists(bestandsnaam):
+                submodule_locaties = Niets
+            indien niet bs.path.exists(bestandsnaam):
                 opnieuw
 
             terug spec_van_bestandslocatie(volledige_naam, bestandsnaam, loader=PynlLaader(bestandsnaam),
                 submodule_search_locations=submodule_locaties)
 
-        terug Niks # we weten niet hoe we dit moeten importeren
+        terug Niets # we weten niet hoe we dit moeten importeren
 
 klasse PynlLaader(Laader):
     def __init__(self, bestandsnaam):
         self.bestandsnaam = bestandsnaam
 
     def create_module(self, spec):
-        terug Niks # gebruik standaard modulecreatiesemantiek
+        terug Niets # gebruik standaard modulecreatiesemantiek
 
     def exec_module(self, module):
         met open(self.bestandsnaam) zoals f:
@@ -120,10 +121,10 @@ def hoofd_uitvoeren(locatie, argumenten):
         bron = f.read()
 
     vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)
-    exec(vertaald, {'argv_external': argumenten})
+    exec(vertaald, {'argv_external': argumenten, '__name__': '__main__'})
 
 
-als __name__ == '__main__':
+indien __name__ == '__main__':
     sys.meta_path.insert(0, PynlMetaPadVinder())
 
     # wis eventuele caches
