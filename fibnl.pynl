@@ -3,3 +3,7 @@ def fibonacci(n):
         terug n
 
     terug fibonacci(n - 1) + fibonacci(n - 2)
+
+
+indien __name__ == '__main__':
+    print(fibonacci(10))
