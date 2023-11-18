@@ -20,7 +20,10 @@ py_to_nl = {
     "and" : "en",
     "as" : "zoals",
     "assert" : "eis",
+    "async" : "async",
+    "await" : "wachtop",
     "break" : "stop",
+    "case" : "geval",
     "class" : "klasse",
     "continue": "opnieuw",
     "def": "def",
@@ -37,16 +40,18 @@ py_to_nl = {
     "import": "importeer",
     "in": "in",
     "is": "is",
-    "lambda": "labda",
+    "lambda": "lambda",
+    "match": "vergelijk",
     "None": "Niets",
     "nonlocal": "nietlokaal",
     "not": "niet",
     "or": "of",
     "pass": "pas",
-    "raise": "verhoog",
+    "raise": "hef",
     "return": "terug",
     "True": "Waar",
     "try": "probeer",
+    "type": "type",
     "while": "zolang",
     "with": "met",
     "yield": "lever",
@@ -110,12 +115,12 @@ class PynlLoader(Loader):
         exec(translated, vars(module))
 
 
-def exec_main(location):
+def exec_main(location, args):
     with open(location) as f:
         source = f.read()
 
     translated = translate_source(source, translations=nl_to_py)
-    exec(translated)
+    exec(translated, {'argv_external': [location] + args, '__name__': '__main__'})
 
 
 if __name__ == '__main__':
@@ -124,10 +129,17 @@ if __name__ == '__main__':
     # clear any caches
     sys.path_importer_cache.clear()
     importlib.invalidate_caches()
+
+    try:
+        # inject external arguments into the script
+        for idx, x in enumerate(argv_external):
+            sys.argv[idx] = x
+    except NameError:
+        pass
     
     try:
         location = sys.argv[1]
-        exec_main(location)
+        exec_main(location, sys.argv[2:])
     except IndexError:
         code.InteractiveConsole(locals=globals()).interact()
     
