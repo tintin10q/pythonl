@@ -5,7 +5,7 @@ Wat als je alleen maar Nederlandse woorden zou gebruiken voor python sleutel woo
 Hier is mijn idee daar van:
 
 - and: en
-- as: zoals
+- as: als
 - assert: eis
 - async: async
 - await: wachtop
