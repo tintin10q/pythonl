@@ -9,17 +9,17 @@ Dit bestand is mede gebaseerd op de volgende twee voorbeelden:
 
 
 importeer sys
-importeer os zoals bs
-importeer importlib zoals importeerbib
+importeer os als bs
+importeer importlib als importeerbib
 importeer code
-van token_utils importeer tokenize zoals tekeniseer, untokenize zoals ontekeniseer
-van importlib.abc importeer MetaPathFinder zoals MetaPadVinder, Loader zoals Laader
-van importlib.util importeer spec_from_file_location zoals spec_van_bestandslocatie
-van importlib.machinery importeer FileFinder zoals BestandsVinder
+van token_utils importeer tokenize als tekeniseer, untokenize als ontekeniseer
+van importlib.abc importeer MetaPathFinder als MetaPadVinder, Loader als Laader
+van importlib.util importeer spec_from_file_location als spec_van_bestandslocatie
+van importlib.machinery importeer FileFinder als BestandsVinder
 
 py_naar_nl = {
     "and" : "en",
-    "as" : "zoals",
+    "as" : "als",
     "assert" : "eis",
     "async" : "async",
     "await" : "wachtop",
@@ -108,7 +108,7 @@ klasse PynlLaader(Laader):
         terug Niets # gebruik standaard modulecreatiesemantiek
 
     def exec_module(self, module):
-        met open(self.bestandsnaam) zoals f:
+        met open(self.bestandsnaam) als f:
             bron = f.read()
 
         vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)
@@ -117,7 +117,7 @@ klasse PynlLaader(Laader):
 
 
 def hoofd_uitvoeren(locatie, argumenten):
-    met open(locatie) zoals f:
+    met open(locatie) als f:
         bron = f.read()
 
     vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)

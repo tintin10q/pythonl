@@ -18,7 +18,7 @@ from importlib.util import spec_from_file_location
 
 py_to_nl = {
     "and" : "en",
-    "as" : "zoals",
+    "as" : "als",
     "assert" : "eis",
     "async" : "async",
     "await" : "wachtop",
