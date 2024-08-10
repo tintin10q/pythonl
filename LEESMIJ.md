@@ -43,15 +43,29 @@ Hier is mijn idee daar van:
 - with: met
 - yield: lever
 
+## Voorbeeld
+
 ```python
-def is_a(a):
-  indien a:
-    print(a)
-  anders:
-    print("Niet a")
+def lees_nummers(bestand_naam):
+    nummers = []
+    met open(bestand_naam) als bestand:
+        voor lijn in bestand:
+            probeer:
+                nummers.append(int(lijn))
+            behalve:
+                opnieuw
+    terug nummers
+
+nummers = lees_nummers("nummers.txt")
+print(nummers)
 ```
 
 En je kan dit nog echt uitvoeren ook!
+
+```shell
+./pythonl voorbeeld.pynl
+```
+
 
 ## Afhankelijkheden
 
