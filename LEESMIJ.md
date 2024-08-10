@@ -44,7 +44,7 @@ Hier is mijn idee daar van:
 - yield: lever
 
 ```python
-def(a):
+def is_a(a):
   indien a:
     print(a)
   anders:

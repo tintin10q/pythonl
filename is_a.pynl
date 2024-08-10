@@ -1,0 +1,7 @@
+def is_a(a):
+  indien a:
+    print(a)
+  anders:
+    print("Niet a")
+
+is_a(3)
