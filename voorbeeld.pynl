@@ -6,8 +6,8 @@ def lees_nummers(bestand_naam):
 			probeer:
 				nummers.append(int(lijn))
 			behalve:
-				opnieuw
-	terug nummers
+				doorgaan
+	retour nummers
 
 nummers = lees_nummers("nummers.txt")
 print(nummers)

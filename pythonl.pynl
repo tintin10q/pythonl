@@ -7,7 +7,6 @@ Dit bestand is mede gebaseerd op de volgende twee voorbeelden:
  - https://stackoverflow.com/a/43573798
 """
 
-
 importeer sys
 importeer os als bs
 importeer importlib als importeerbib
@@ -26,7 +25,7 @@ py_naar_nl = {
     "break" : "stop",
     "case" : "geval",
     "class" : "klasse",
-    "continue": "opnieuw",
+    "continue": "doorgaan",
     "def": "def",
     "del": "verwijder",
     "if": "indien",
@@ -49,7 +48,7 @@ py_naar_nl = {
     "or": "of",
     "pass": "pas",
     "raise": "hef",
-    "return": "terug",
+    "return": "retour",
     "True": "Waar",
     "try": "probeer",
     "type": "type",
@@ -93,19 +92,19 @@ klasse PynlMetaPadVinder(MetaPadVinder):
                 bestandsnaam = bs.path.join(deel, naam + ".pynl")
                 submodule_locaties = Niets
             indien niet bs.path.exists(bestandsnaam):
-                opnieuw
+                doorgaan
 
-            terug spec_van_bestandslocatie(volledige_naam, bestandsnaam, loader=PynlLaader(bestandsnaam),
+            retour spec_van_bestandslocatie(volledige_naam, bestandsnaam, loader=PynlLaader(bestandsnaam),
                 submodule_search_locations=submodule_locaties)
 
-        terug Niets # we weten niet hoe we dit moeten importeren
+        retour Niets # we weten niet hoe we dit moeten importeren
 
 klasse PynlLaader(Laader):
     def __init__(self, bestandsnaam):
         self.bestandsnaam = bestandsnaam
 
     def create_module(self, spec):
-        terug Niets # gebruik standaard modulecreatiesemantiek
+        retour Niets # gebruik standaard modulecreatiesemantiek
 
     def exec_module(self, module):
         met open(self.bestandsnaam) als f:
@@ -122,7 +121,6 @@ def hoofd_uitvoeren(locatie, argumenten):
 
     vertaald = vertaal_bron(bron, vertalingen=py_naar_nl)
     exec(vertaald, {'argv_external': argumenten, '__name__': '__main__'})
-
 
 indien __name__ == '__main__':
     sys.meta_path.insert(0, PynlMetaPadVinder())

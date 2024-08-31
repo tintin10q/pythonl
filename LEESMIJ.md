@@ -12,7 +12,7 @@ Hier is mijn idee daar van:
 - break: stop
 - case: geval
 - class: klasse
-- continue: opnieuw
+- continue: doorgaan
 - def: def
 - del: verwijder
 - if: indien
@@ -35,7 +35,7 @@ Hier is mijn idee daar van:
 - or: of
 - pass: pas
 - raise: hef
-- return: terug
+- return: retour 
 - True: Waar
 - try: probeer
 - type: type
@@ -53,8 +53,8 @@ def lees_nummers(bestand_naam):
             probeer:
                 nummers.append(int(lijn))
             behalve:
-                opnieuw
-    terug nummers
+                doorgaan
+    retour nummers
 
 nummers = lees_nummers("nummers.txt")
 print(nummers)

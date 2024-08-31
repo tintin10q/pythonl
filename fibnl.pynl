@@ -1,8 +1,8 @@
 def fibonacci(n):
     indien n in {0, 1}:
-        terug n
+        retour n
 
-    terug fibonacci(n - 1) + fibonacci(n - 2)
+    retour fibonacci(n - 1) + fibonacci(n - 2)
 
 
 indien __name__ == '__main__':
