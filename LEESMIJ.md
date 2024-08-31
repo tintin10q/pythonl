@@ -63,18 +63,25 @@ print(nummers)
 En je kan dit nog echt uitvoeren ook!
 
 ```shell
-./pythonl voorbeeld.pynl
+pythonl voorbeeld.pynl
 ```
 
+## Installatie
 
-## Afhankelijkheden
+```bash
+pip install pythonl 
+```
 
-Vergeet niet om de afhankelijkheden in `requirements.txt` te installeren. 
+Of installeer het van [Github](https://github.com/tintin10q/pythonl). 
+In dat geval vergeet niet om de afhankelijkheden in `requirements.txt` te installeren. 
 Dat is op dit moment alleen maar [token_utils](https://pypi.org/project/token-utils/).
 
 ```bash
 pip install -r requirements.txt
 ```
+
+Dit project ondersteunt ook [poetry](https://python-poetry.org/). 
+Dus je kan ook de afhankelijkheden installeren met `poetry install` waarna je `poetry run pythonl` kan uitvoeren om pythonl uit te voeren.
 
 ## Interactie met Python code
 

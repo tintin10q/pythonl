@@ -6,7 +6,7 @@ authors = ["Quinten Cabo <tintin10q@hotmail.com>", "Marijn van Wezel <marijnvanw
 readme = "LEESMIJ.md"
 license = "GPL-3.0-only"
 repository = "https://github.com/tintin10q/pythonl"
-keywords = ["translation", "vertaling", "Dutch", "Nederlands", "taal", "language"]
+keywords = ["Dutch", "Nederlands", "translation", "vertaling", "taal", "language"]
 packages = [{ include = "pythonl" }, { include = "pythonl.pynl" }, { include = "console_script.py" }]
 
 
