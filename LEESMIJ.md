@@ -99,7 +99,17 @@ $ pythonl ./hoofd.pynl
 # Fibonacci(7) uit Nederlandse module: 13
 ```
 
-# Zelfstart (Boodstrap) Pythonl 🐍
+## Interactieve Shell
+
+Er is ook een werkende pythonl shell. 
+
+```shell
+$ pythonl
+Pythonl (0.1.0) interactive shell 3.10.12 (main, Jul 31 2024, 01:37:00) [GCC 11.4.0]
+>>> 
+```
+ 
+# 🐍
 
 ```shell
 $ ./pythonl ./pythonl.pynl ./hoofd.pynl

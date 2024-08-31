@@ -123,7 +123,7 @@ def exec_main(location, args):
     exec(translated, {'argv_external': [location] + args, '__name__': '__main__'})
 
 
-if __name__ == '__main__':
+def main():
     sys.meta_path.insert(0, PynlMetaPathFinder())
 
     # clear any caches
@@ -132,8 +132,11 @@ if __name__ == '__main__':
 
     try:
         # inject external arguments into the script
-        for idx, x in enumerate(argv_external):
-            sys.argv[idx] = x
+        if argv_external == []:
+            sys.argv = sys.argv[:1] # Remove arguments from sys.argv besides filename
+        else:
+            for idx, x in enumerate(argv_external):
+                sys.argv[idx] = x
     except NameError:
         pass
     
@@ -141,5 +144,16 @@ if __name__ == '__main__':
         location = sys.argv[1]
         exec_main(location, sys.argv[2:])
     except IndexError:
-        code.InteractiveConsole(locals=globals()).interact()
+        # Also geen files start dan maar de pythonl shell
+        shell = code.InteractiveConsole(locals=globals())
+        native_compile = shell.compile
+
+        def compile(code, file, lines):
+            code = translate_source(code)
+            return native_compile(code,file,lines)
+
+        shell.compile = compile
+        shell.interact(banner=f"Pythonl (0.1.0) interactive shell {sys.version}")
     
+if __name__ == '__main__':
+    main()

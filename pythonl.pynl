@@ -66,13 +66,13 @@ def vertaal_teken(teken, vertalingen):
     behalve KeyError:
         pas
 
-    terug teken
+    retour teken
 
 
 def vertaal_bron(bron, vertalingen = py_naar_nl):
     brontekens = tekeniseer(bron)
     vertaalde_tekens = [vertaal_teken(token, vertalingen) voor token in brontekens]
-    terug ontekeniseer(vertaalde_tekens)
+    retour ontekeniseer(vertaalde_tekens)
     
 
 klasse PynlMetaPadVinder(MetaPadVinder):
@@ -131,8 +131,11 @@ indien __name__ == '__main__':
 
     probeer:
         # injecteer externe argumenten in het script
-        voor idx, x in enumerate(argv_external):
-            sys.argv[idx] = x
+        indien argv_external == []:
+            sys.argv = sys.argv[:1] # Doe alleen de naam van dit script in argv
+        anders:
+            voor idx, x in enumerate(argv_external):
+                sys.argv[idx] = x
     behalve NameError:
         pas
     
@@ -140,5 +143,15 @@ indien __name__ == '__main__':
         locatie = sys.argv[1]
         hoofd_uitvoeren(locatie, sys.argv[2:])
     behalve IndexError:
-        code.InteractiveConsole(locals=globals()).interact()
-    
+        # Also geen files start dan maar de pythonl shell
+        shell = code.InteractiveConsole(locals=globals())
+        oorspronkelijk_compile = shell.compile
+
+
+        def compile(code, file, lines):
+            code = vertaal_bron(code)
+            retour oorspronkelijk_compile(code, file, lines)
+
+
+        shell.compile = compile
+        shell.interact(banner=f"Pythonl (0.1.0) interactive shell {sys.version}")
