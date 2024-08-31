@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pythonl"
+version = "0.1.0"
+description = "Wat als je alleen maar Nederlandse woorden zou gebruiken voor python sleutel woorden?"
+authors = ["Quinten Cabo <tintin10q@hotmail.com>", "Marijn van Wezel <marijnvanwezel@gmail.com>", "Stef Gijsberts <stef@stef.link>"]
+readme = "LEESMIJ.md"
+license = "GPL-3.0-only"
+repository = "https://github.com/tintin10q/pythonl"
+keywords = ["translation", "vertaling", "Dutch", "Nederlands", "taal", "language"]
+packages = [{ include = "pythonl" }, { include = "pythonl.pynl" }, { include = "console_script.py" }]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+token-utils = "^0.1.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pythonl = "console_script:main"
